@@ -1,0 +1,66 @@
+/* ==== GLOBAL ==== */
+body {
+    font-family: "Poppins", Arial, sans-serif;
+    background: linear-gradient(135deg, #fff7f7, #ffecec, #fff);
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+
+/* ==== MENU SECTION (INDIAN FOOD) ==== */
+.orderlist {
+    max-width: 1200px;
+    margin: 110px auto 40px auto; /* space after fixed navbar */
+    padding: 20px;
+}
+
+/* Grid layout */
+.indian {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 28px;
+}
+
+/* Food Card */
+.indian div {
+    background: #fff;
+    border-radius: 14px;
+    padding: 18px;
+    text-align: center;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.12);
+    transition: 0.3s ease;
+    cursor: pointer;
+    border: 1px solid #f2f2f2;
+}
+
+/* Hover effect */
+.indian div:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.22);
+}
+
+/* Food Images */
+.indian img {
+    width: 100%;
+    height: 170px;
+    border-radius: 12px;
+    object-fit: cover;
+    margin-bottom: 12px;
+}
+
+/* Title Style */
+.indian h3 {
+    margin: 8px 0;
+    font-size: 20px;
+    font-weight: 600;
+    color: #222;
+}
+
+/* Description */
+.indian p {
+    font-size: 14px;
+    color: #666;
+    margin-top: 4px;
+    line-height: 1.4;
+}
+

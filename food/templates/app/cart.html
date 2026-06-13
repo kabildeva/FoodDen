@@ -1,0 +1,94 @@
+{% extends 'app/base.html' %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'app/css/cart.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<h2>Your Cart</h2>
+
+{% if cart.items.all %}
+<table border="1" cellpadding="10">
+<tr>
+    <th>Food</th>
+    <th>Qty</th>
+    <th>Subtotal</th>
+</tr>
+
+{% for item in cart.items.all %}
+<tr id="item-{{ item.id }}">
+    <td>{{ item.food_item.name }}</td>
+
+    <td>
+        <button data-id="{{ item.id }}" data-action="dec" onclick="updateCart(this)">➖</button>
+        <span id="qty-{{ item.id }}">{{ item.quantity }}</span>
+        <button data-id="{{ item.id }}" data-action="inc" onclick="updateCart(this)">➕</button>
+    </td>
+
+    <td>
+        ₹<span id="subtotal-{{ item.id }}">{{ item.subtotal }}</span>
+    </td>
+</tr>
+{% endfor %}
+</table>
+
+<h3>Total: ₹<span id="cart-total">{{ cart.total_price }}</span></h3>
+
+<div class="cart-actions">
+    <button onclick="goBack()">⬅ Back</button>
+    <button onclick="clearCart()" class="danger">🗑 Clear Cart</button>
+    <a href="{% url 'checkout' %}">
+    <button style="background:green;color:white;">
+        🧾 Order / Checkout
+    </button>
+</a>
+</div>
+
+{% else %}
+<p>Your cart is empty</p>
+<button onclick="goBack()">⬅ Back</button>
+{% endif %}
+
+<script>
+function updateCart(btn) {
+    fetch("{% url 'update_cart' %}", {
+        method: "POST",
+        headers: {
+            "X-CSRFToken": "{{ csrf_token }}",
+            "Content-Type": "application/x-www-form-urlencoded"
+        },
+        body: `item_id=${btn.dataset.id}&action=${btn.dataset.action}`
+    })
+    .then(res => res.json())
+    .then(data => {
+        if (data.removed) {
+            document.getElementById("item-" + btn.dataset.id).remove();
+        } else {
+            document.getElementById("qty-" + btn.dataset.id).innerText = data.quantity;
+            document.getElementById("subtotal-" + btn.dataset.id).innerText = data.item_total;
+        }
+        document.getElementById("cart-total").innerText = data.cart_total;
+    });
+}
+
+function clearCart() {
+    if (!confirm("Clear all items?")) return;
+
+    fetch("{% url 'clear_cart' %}", {
+        method: "POST",
+        headers: { "X-CSRFToken": "{{ csrf_token }}" }
+    }).then(() => location.reload());
+}
+
+function goBack() {
+    window.history.back();
+}
+
+function shipping() {
+    alert("Checkout coming soon 🚀");
+}
+</script>
+
+{% endblock %}

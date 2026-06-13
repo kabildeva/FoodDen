@@ -1,0 +1,88 @@
+{% extends 'app/base.html' %}
+{% load static %}
+
+{% block title %}Indian Food | FoodDen{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'app/css/indianfood.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="orderlist">
+    <div class="indian">
+
+        <div class="food-item">
+            <img src="{% static 'app/images/idly.jpg' %}" alt="Idly">
+            <h3>Idly</h3>
+            <p>Rs.40</p>
+            <p>Steamed rice cakes served with chutney and sambar.</p>
+            <button onclick="addToCart(1)">Add to Cart</button>
+        </div>
+
+        <div class="food-item">
+            <img src="{% static 'app/images/dhosa.jpg' %}" alt="Dosa">
+            <h3>Dosa</h3>
+            <p>Rs.60</p>
+            <p>Crispy rice crepe filled with spiced potatoes.</p>
+            <button onclick="addToCart(2)">Add to Cart</button>
+        </div>
+
+        <div class="food-item">
+            <img src="{% static 'app/images/puri.jpg' %}" alt="Puri">
+            <h3>Puri</h3>
+            <p>Rs.50</p>
+            <p>Deep-fried bread served with potato curry.</p>
+            <button onclick="addToCart(3)">Add to Cart</button>
+        </div>
+
+        <div class="food-item">
+            <img src="{% static 'app/images/sambar.jpg' %}" alt="Sambar">
+            <h3>Sambar</h3>
+            <p>Rs.30</p>
+            <p>Spicy lentil soup with vegetables.</p>
+            <button onclick="addToCart(4)">Add to Cart</button>
+        </div>
+
+        <div class="food-item">
+            <img src="{% static 'app/images/curd.jpg' %}" alt="Curd Rice">
+            <h3>Curd Rice</h3>
+            <p>Rs.45</p>
+            <p>Rice mixed with yogurt and tempered with spices.</p>
+            <button onclick="addToCart(5)">Add to Cart</button>
+        </div>
+
+        <div class="food-item">
+            <img src="{% static 'app/images/veg briyani.jpg' %}" alt="Veg Biryani">
+            <h3>Veg Biryani</h3>
+            <p>Rs.120</p>
+            <p>Fragrant rice dish cooked with vegetables and spices.</p>
+            <button onclick="addToCart(6)">Add to Cart</button>
+        </div>
+
+        <div class="food-item">
+            <img src="{% static 'app/images/briyani.jpg' %}" alt="Chicken Biryani">
+            <h3>Chicken Biryani</h3>
+            <p>Rs.150</p>
+            <p>Aromatic rice dish layered with marinated chicken and spices.</p>
+            <button onclick="addToCart(7)">Add to Cart</button>
+        </div>
+
+        <div class="food-item">
+            <img src="{% static 'app/images/dhal chawal.jpg' %}" alt="Dhal Chawal">
+            <h3>Dhal Chawal</h3>
+            <p>Rs.50</p>
+            <p>Yellow lentils served with steamed rice.</p>
+            <button onclick="addToCart(8)">Add to Cart</button>
+        </div>
+
+        <div class="food-item">
+            <img src="{% static 'app/images/samosa.jpg' %}" alt="Samosa">
+            <h3>Samosa</h3>
+            <p>Rs.20</p>
+            <p>Fried pastry filled with spiced potatoes and peas.</p>
+            <button onclick="addToCart(9)">Add to Cart</button>
+        </div>
+
+    </div>
+</div>
+{% endblock %}

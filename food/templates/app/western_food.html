@@ -1,0 +1,114 @@
+{% extends 'app/base.html' %}
+{% load static %}
+
+{% block title %}Western Food Menu | FoodDen{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'app/css/westfood.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="orderlist">
+    <div class="west">
+
+        <div class="food-item">
+            <img src="{% static 'app/images/pepperonie.jpg' %}">
+            <h3>Pepperoni Pizza</h3>
+            <p>Rs.220</p>
+            <p>Delicious pepperoni pizza with fresh toppings.</p>
+            <button onclick="addToCart(10)">Add to Cart</button>
+        </div>
+
+        <div class="food-item">
+            <img src="{% static 'app/images/bbq.jpg' %}">
+            <h3>BBQ Chicken Pizza</h3>
+            <p>Rs.240</p>
+            <p>Smoky BBQ chicken pizza with tangy sauce.</p>
+            <button onclick="addToCart(11)">Add to Cart</button>
+        </div>
+
+        <div class="food-item">
+            <img src="{% static 'app/images/veggie.jpg' %}">
+            <h3>Veggie Pizza</h3>
+            <p>Rs.200</p>
+            <p>Fresh vegetable pizza loaded with colorful veggies.</p>
+            <button onclick="addToCart(12)">Add to Cart</button>
+        </div>
+
+        <div class="food-item">
+            <img src="{% static 'app/images/meet.jpg' %}">
+            <h3>Meat Lovers Pizza</h3>
+            <p>Rs.260</p>
+            <p>Loaded with a variety of meats for a hearty meal.</p>
+            <button onclick="addToCart(13)">Add to Cart</button>
+        </div>
+
+        <div class="food-item">
+            <img src="{% static 'app/images/leg.jpg' %}">
+            <h3>Chicken Leg</h3>
+            <p>Rs.120</p>
+            <p>Juicy grilled chicken leg with spices.</p>
+            <button onclick="addToCart(14)">Add to Cart</button>
+        </div>
+
+        <div class="food-item">
+            <img src="{% static 'app/images/wings.jpg' %}">
+            <h3>Chicken Wings</h3>
+            <p>Rs.180</p>
+            <p>Crispy chicken wings with your choice of sauce.</p>
+            <button onclick="addToCart(15)">Add to Cart</button>
+        </div>
+
+        <div class="food-item">
+            <img src="{% static 'app/images/cheese burger.jpg' %}">
+            <h3>Cheese Burger</h3>
+            <p>Rs.150</p>
+            <p>Classic cheeseburger with fresh lettuce and tomato.</p>
+            <button onclick="addToCart(16)">Add to Cart</button>
+        </div>
+
+        <div class="food-item">
+            <img src="{% static 'app/images/beef burger.jpg' %}">
+            <h3>Beef Burger</h3>
+            <p>Rs.180</p>
+            <p>Juicy beef burger with all the fixings.</p>
+            <button onclick="addToCart(17)">Add to Cart</button>
+        </div>
+
+        <div class="food-item">
+            <img src="{% static 'app/images/burger combo.jpg' %}">
+            <h3>Burger Combo</h3>
+            <p>Rs.250</p>
+            <p>Combo meal with burger, fries, and drink.</p>
+            <button onclick="addToCart(18)">Add to Cart</button>
+        </div>
+
+        <div class="food-item">
+            <img src="{% static 'app/images/noodles.jpg' %}">
+            <h3>Beef Noodles</h3>
+            <p>Rs.190</p>
+            <p>Hearty beef noodles in savory broth.</p>
+            <button onclick="addToCart(19)">Add to Cart</button>
+        </div>
+
+    </div>
+</div>
+
+<script>
+function addToCart(foodId) {
+    fetch(`/add-to-cart/${foodId}/`, {
+        method: "POST",
+        headers: {
+            "X-CSRFToken": "{{ csrf_token }}"
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            alert("Item added to cart ✅");
+        }
+    });
+}
+</script>
+
+{% endblock %}

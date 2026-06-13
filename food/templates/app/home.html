@@ -1,0 +1,53 @@
+{% extends 'app/base.html' %}
+{% load static %}
+
+{% block title %}Home{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'app/css/style.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div class="main" id="main">
+    <div class="slimg" id="slimg">
+        <div class="slide">
+            <img src="{% static 'app/images/banner.jpg' %}" alt="">
+        </div>
+        <div class="slide">
+            <img src="{% static 'app/images/banner2.jpg' %}" alt="">
+        </div>
+        <div class="slide">
+            <img src="{% static 'app/images/banner3.jpg' %}" alt="">
+        </div>
+    </div>
+
+    <button class="arrow prev" id="prev">‹</button>
+    <button class="arrow next" id="next">›</button>
+
+    <div class="dots">
+        <span class="dot" data-i="0"></span>
+        <span class="dot" data-i="1"></span>
+        <span class="dot" data-i="2"></span>
+    </div>
+</div>
+
+<section>
+    <h2 style="text-align:center; margin-top:40px;">Welcome to FoodDen</h2>
+    <p style="text-align:center; margin:20px 100px;">
+        Discover a world of culinary delights at FoodDen, your ultimate destination for delicious meals.
+    </p>
+</section>
+
+<div class="ordermain">
+    <a href="{% url 'western_food' %}" class="westfood">
+        <img src="{% static 'app/images/western food.jpg' %}" alt="">
+        <h3>Western Food</h3>
+    </a>
+
+    <a href="{% url 'indian_food' %}" class="indianfood">
+        <img src="{% static 'app/images/indian food.jpg' %}" alt="">
+        <h3>Indian Food</h3>
+    </a>
+</div>
+{% endblock %}
